@@ -1,0 +1,23 @@
+<nav class="pagination justify-content-center" role="navigation">
+    <ul class="pagination">
+        {% if paginator.previous_page %}
+            <li class="page-item">
+                {% if paginator.previous_page == 1 %}
+                    <a class="page-link" href="{{ site.baseurl }}/" title="Previous Page">&laquo; Newer</a>
+                {% else %}
+                    <a class="page-link" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" title="Previous Page">&laquo; Newer</a>
+                {% endif %}
+            </li>
+        {% endif %}
+        
+        <li class="page-item disabled">
+            <span class="page-link">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+        </li>
+        
+        {% if paginator.next_page %}
+            <li class="page-item">
+                <a class="page-link" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" title="Next Page">Older &raquo;</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>

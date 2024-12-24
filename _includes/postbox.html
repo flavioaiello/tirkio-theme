@@ -1,0 +1,29 @@
+<!-- begin post -->
+<a href="{{ post.url | absolute_url }}" class="text-decoration-none">
+  <div class="card h-100">
+    {% if post.image %}
+    <figure class="position-relative">
+      <img
+        class="card-img-top img-fluid rounded"
+        src="{{ site.baseurl }}/{{ post.image }}"
+        alt="{{ post.title }}"
+      />
+      <figcaption class="position-absolute top-0 end-0 p-1 text-muted rounded">
+        <small>Bild:{{ post.title }}</small>
+      </figcaption>
+    </figure>
+    {% endif %}
+    <div class="card-body">
+      <h5 class="card-title">{{ post.title }}</h5>
+      <p class="card-text">
+        {{ post.excerpt | strip_html | truncatewords:15 }}
+      </p>
+    </div>
+    <div class="card-footer border-top-0">
+      <div class="d-flex align-items-center">
+        <span class="text-muted">{{ post.date | date_to_string }}</span>
+      </div>
+    </div>
+  </div>
+</a>
+<!-- end post -->
