@@ -2,8 +2,6 @@
 
 TiRKiO is a modern general-purpose Jekyll theme designed for showcasing github pages. This repository provides the files necessary to set up and deploy the TiRKiO theme using GitHub Pages, with or without a custom domain.
 
-![TiRKiO Theme Screenshot](assets/images/screenshot.png)
-
 ## Features
 - Modern responsive design using Bootstrap 5
 - Pagination, sidebar, and category-based navigation
