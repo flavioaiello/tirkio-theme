@@ -1,0 +1,62 @@
+---
+title: "Frugal Banking"
+description: "TiRKiO steht für modernes Neobanking rund ums Zahlen, Sparen, Anlegen und Vorsorgen. Frugal Banking Finanzinformationen für Gen Z und Frugalisten jeden Alters."
+layout: default
+exclude: true
+---
+
+<!-- Home Intro -->
+{% if page.url == "/" %}
+<section class="container my-3 card">
+  <div class="row align-items-center">
+    <div class="col-md-7 p-3">
+      <h1>Frugal Banking</h1>
+      <p>
+        TiRKiO steht für modernes Neobanking und umfassendes Finanzwissen, das
+        dich dabei unterstützt, dein Leben finanziell nachhaltig und ausgewogen
+        zu gestalten. Entdecke wertvolle Informationen zu den Themen Zahlen,
+        Sparen, Anlegen und Vorsorgen – die moderne Informationsseite für Gen Z und
+        Frugalisten jeden Alters.
+      </p>
+      <p>TiRKiO – Smarter leben, klüger wirtschaften.</p>
+      <a href="{{site.baseurl}}/about" class="btn btn-primary btn-lg">About</a>
+    </div>
+    <div class="col-md-5 p-3">
+      <img
+        class="img-fluid"
+        src="{{site.baseurl}}/assets/images/intro.webp"
+        alt="tirkio.com"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- Featured Posts -->
+{% endif %} {% assign featured_posts = site.posts | where: "featured", true %}
+{% if featured_posts.size > 0 %}
+<section class="container my-3">
+  <div class="row">
+    {% for post in featured_posts %}
+    <div class="col-md-4">{% include postbox.html %}</div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- Posts List with Sidebar -->
+<section class="container my-3">
+  <div class="row">
+    <!-- Main Content -->
+    <div class="col-lg-8">
+      <div class="row">
+        {% for post in paginator.posts %} {% unless post.featured == true %}
+        <div class="col-md-6 mb-4">{% include postbox.html %}</div>
+        {% endunless %} {% endfor %}
+      </div>
+      <!-- Pagination -->
+      {% include pagination.html %}
+    </div>
+    <!-- Sidebar -->
+    <div class="col-lg-4">{% include sidebar.html %}</div>
+  </div>
+</section>

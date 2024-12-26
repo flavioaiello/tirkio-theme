@@ -1,0 +1,21 @@
+title: "TiRKiO"
+timezone: Europe/Zurich
+baseurl: ""
+permalink: "/:title/"
+favicon: 'assets/images/favicon.ico'
+paginate: 30
+disqus: 'tirkio'
+locale: de_ch
+lang: de_ch
+feed_items: 10
+feed_update_period: daily
+feed_update_frequency: 1
+markdown: kramdown
+kramdown:
+  syntax_highlighter_opts:
+    disable: true
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-seo-tag

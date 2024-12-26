@@ -1,0 +1,35 @@
+---
+layout: default
+---
+
+<!-- Post Featured Image -->
+{% if page.image %}
+<div class="text-center">
+<figure class="position-relative">
+  <img
+    class="img-fluid w-100 rounded"
+    src="{{ site.baseurl }}/{{ page.image }}"
+    alt="{{ page.title }}"
+    style="object-fit: cover"
+  />
+  <figcaption class="position-absolute top-0 end-0 p-1 text-muted rounded">
+    <small>Bild:{{ page.title }}</small>
+  </figcaption>
+  </div>
+  {% endif %}
+
+  <div class="container mt-5">
+    <div class="col-lg-8 mx-auto">
+      <!-- Post Title -->
+      <h1 class="fw-bold">{{ page.title }}</h1>
+
+      <!-- Post Content -->
+      <div class="article-post serif-font text-justify">{{ content }}</div>
+
+      <!-- Comments Section -->
+      {% if page.comments == true %}
+      <div id="comments" class="mt-5">{% include disqus.html %}</div>
+      {% endif %}
+    </div>
+  </div>
+</figure>

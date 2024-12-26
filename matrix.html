@@ -1,0 +1,106 @@
+---
+title: "Produktvergleich"
+layout: default
+permalink: "/matrix/"
+exclude: true
+---
+
+<h5 class="mt-5">Kategorien</h5>
+<div class="container card">
+  {% assign all_categories = site.posts | map: "categories" | join: "|" | split: "|" | uniq | sort %}
+  {% if all_categories == nil %}
+    {% assign all_categories = "" %}
+  {% endif %}
+
+  <div class="flex-container d-flex">
+    <!-- First Column -->
+    <div class="flex-fill text-start">
+      <div class="p-1"><strong>&nbsp;</strong></div>
+      {% for category in all_categories %}
+        <div class="p-1" id="{{ category | downcase | replace: " ", "-" | replace: "&", "and" | replace: "/", "-" }}">
+          <a href="#{{ category | downcase | replace: " ", "-" | replace: "&", "and" | replace: "/", "-" }}" class="text-decoration-none">{{ category }}</a>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Remaining Columns -->
+    {% for post in site.posts | sort: "title" %}
+    {% if post.matrix == true %}
+    <div class="flex-fill text-center">
+      <!-- Header for the Column -->
+      <div class="p-1">
+        {% if post.url %}
+          <a href="{{ post.url }}" class="text-decoration-none">{{ post.title }}</a>
+        {% else %}
+          {{ post.title }}
+        {% endif %}
+      </div>
+      <!-- Rows for Categories -->
+      {% for category in all_categories %}
+      <div class="p-1">
+        {% if post.categories == nil %}
+          {% assign post.categories = "" %}
+        {% endif %}
+        {% if post.categories contains category %}
+          <span class="badge bg-primary">✓</span>
+        {% else %}
+          <span class="badge bg-light">✗</span>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+
+
+<h5 class="mt-5">Features</h5>
+<div class="container card p-1">
+  {% assign all_tags = site.posts | map: "tags" | join: "|" | split: "|" | uniq | sort %}
+  {% if all_tags == nil %}
+    {% assign all_tags = "" %}
+  {% endif %}
+
+  <div class="flex-container d-flex my-1">
+    <!-- First Column -->
+    <div class="flex-fill text-start">
+      <div class="p-1"><strong>&nbsp;</strong></div>
+      {% for tag in all_tags %}
+        <div class="p-1" id="{{ tag | downcase | replace: " ", "-" | replace: "&", "and" | replace: "/", "-" }}">
+          <a href="#{{ tag | downcase | replace: " ", "-" | replace: "&", "and" | replace: "/", "-" }}" class="text-decoration-none">{{ tag }}</a>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Remaining Columns -->
+    {% for post in site.posts | sort: "title" %}
+    {% if post.matrix == true %}
+    <div class="flex-fill text-center">
+      <!-- Header for the Column -->
+      <div class="p-1">
+        {% if post.url %}
+          <a href="{{ post.url }}" class="text-decoration-none">{{ post.title }}</a>
+        {% else %}
+          {{ post.title }}
+        {% endif %}
+      </div>
+      <!-- Rows for Tags -->
+      {% for tag in all_tags %}
+      <div class="p-1">
+        {% if post.tags == nil %}
+          {% assign post.tags = "" %}
+        {% endif %}
+        {% if post.tags contains tag %}
+          <span class="badge bg-primary">✓</span>
+        {% else %}
+          <span class="badge bg-light">✗</span>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>

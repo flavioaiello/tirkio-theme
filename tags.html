@@ -1,0 +1,26 @@
+---
+title: "Frugal Banking"
+layout: default
+permalink: "/tags/"
+exclude: true
+---
+
+{% for tag in site.tags %}
+<h4 class="mt-5 mb-4 pb-2 border-bottom text-capitalize" id="{{ tag[0] | downcase | replace: " ","-" | replace: "&", "and" | replace: "/","-" }}">
+    <span class="small fw-bold">In "{{ tag[0] }}"</span>
+</h4>
+<div class="row">
+    {% assign pages_list = tag[1] %}
+    {% if pages_list %}
+        {% for post in pages_list %}
+            {% if post.title %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    {% include postbox.html %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p class="text-muted">Keine Einträge mit dieser Markierung.</p>
+    {% endif %}
+</div>
+{% endfor %}

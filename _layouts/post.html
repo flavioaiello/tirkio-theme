@@ -1,0 +1,96 @@
+---
+layout: default
+---
+
+<div class="container my-3">
+  <div class="row">
+    <!-- Post Content -->
+    <div class="col-lg-8">
+      <!-- Featured Image -->
+      {% if page.image %}
+      <figure class="position-relative">
+        <img
+        class="img-fluid w-100 rounded"
+        src="{{ site.baseurl }}/{{ page.image }}"
+        alt="{{ page.title }}"
+        style="object-fit: cover"
+      />
+        <figcaption
+          class="position-absolute top-0 end-0 p-1 text-muted rounded"
+        >
+          <small>Bild:{{ page.title }}</small>
+        </figcaption>
+      {% endif %}
+
+      <!-- Post Categories -->
+      <ul class="list-inline my-3">
+        {% assign sortedCategories = page.categories | sort %} {% for category
+        in sortedCategories %}
+        <li class="list-inline-item">
+          <a
+            href="{{ site.baseurl }}/categories#{{ category | slugify }}"
+            class="badge bg-primary text-decoration-none"
+            >{{ category }}</a
+          >
+        </li>
+        {% endfor %}
+        {% assign sortedTags = page.tags | sort %} {% for tag in sortedTags %}
+        <li class="list-inline-item">
+          <a
+            href="{{ site.baseurl }}/tags#{{ tag | slugify }}"
+            class="badge bg-secondary text-decoration-none"
+            >{{ tag }}</a
+          >
+        </li>
+        {% endfor %}
+      </ul>
+
+      <!-- Post Title -->
+      <h1 class="fw-bold">{{ page.title }}</h1>
+
+      <!-- Post Content -->
+      <div class="article-post serif-font">{{ content }}</div>
+
+      <!-- Post Date -->
+      <p class="text-muted">
+        <small>
+          <time datetime="{{ page.date | date:'%Y-%m-%d' }}"
+            >{{ page.date | date_to_string }}</time
+          >
+          {% if page.last_modified_at %} (Updated:
+          <time datetime="{{ page.last_modified_at | date_to_xmlschema }}"
+            >{{ page.last_modified_at | date: "%b %-d, %Y" }}</time
+          >) {% endif %}
+        </small>
+      </p>
+
+      <!-- Prev/Next Navigation -->
+      <div class="row mt-4">
+        <div class="col-6">
+          {% if page.previous.url %}
+          <a
+            class="btn btn-outline-light text-decoration-none"
+            href="{{ page.previous.url | absolute_url }}"
+            >&laquo; {{ page.previous.title }}</a
+          >
+          {% endif %} 
+        </div>
+        <div class="col-6 text-end">
+          {% if page.next.url %}
+          <a
+            class="btn btn-outline-light text-decoration-none"
+            href="{{ page.next.url | absolute_url }}"
+            >{{ page.next.title }} &raquo;</a
+          >
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Comments -->
+      <section id="comments" class="my-3">{% include disqus.html %}</section>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">{% include sidebar.html %}</div>
+  </div>
+</div>

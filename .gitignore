@@ -1,0 +1,44 @@
+# Jekyll build files
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Ruby related files
+*.gem
+*.rbc
+.bundle/
+vendor/bundle/
+vendor/cache/
+vendor/gems/
+vendor/ruby/
+
+# Logs and temp files
+log/
+*.log
+tmp/
+*.tmp
+*.swp
+.pids
+.byebug_history
+
+# System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+._*
+
+# Node modules (if using npm/yarn for frontend assets)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# VSCode files
+.vscode/
+*.code-workspace
+
+# Environment variables
+.env
+.env.*
